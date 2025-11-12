@@ -55,7 +55,7 @@ export default async function Home() {
   ];
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 to-purple-300">
+    <div className="min-h-screen h-full bg-gradient-to-br from-purple-100 to-purple-300">
       {/* Banner Section */}
       <div className="relative overflow-hidden bg-gradient-to-r from-purple-9 to-purple-10 px-6 py-16 sm:px-8">
         <div className="mx-auto max-w-5xl text-center">
@@ -64,7 +64,7 @@ export default async function Home() {
           </h1>
           <p className="mt-4 text-lg sm:text-xl">
             Effortlessly manage your payroll with AI-powered automation, ensuring speed, accuracy, and intelligent insights for every pay run.
-              Join thousands of companies that trust us to handle their payroll with zero errors and maximum efficiency.
+              Join thousands of people that trust us to handle their payroll with zero errors and maximum efficiency.
           </p>
           <div className="mt-8">
             <button className="p-5 bg-purple-800 text-white font-bold cursor-pointer rounded w-100">
@@ -75,8 +75,8 @@ export default async function Home() {
       </div>
 
       {/* Recent Payrolls Section */}
-      <div className="mx-auto max-w-5xl px-6 py-12 sm:px-8">
-        <h2 className="text-2xl font-bold text-purple-12">Recent Payrolls</h2>
+      <div className="mx-auto max-w-5xl py-12 sm:px-8">
+        <h2 className="text-2xl font-bold mb-2">Recent Payrolls</h2>
 
         <div className="flex flex-row flex-wrap gap-5">
           {samplePayrolls.map((payroll) => (
@@ -103,6 +103,21 @@ export default async function Home() {
           ))}
         </div>
       </div>
+
+      {/* Sticky Footer */}
+      <footer className="sticky bottom-0 z-10  py-4 px-6">
+        <div className="mx-auto max-w-5xl flex items-center justify-between">
+          <p className="text-sm">&copy; {new Date().getFullYear()} RX Payroll. All rights reserved.</p>
+          <div className="flex gap-4">
+            <a href="https://x.com/muchirajunior" target="_" className="text-sm flex hover:text-purple-900 items-center">
+              <span className="me-2"> MUCHIRA JUNIOR</span>
+              <svg className="h-5 w-5 text-purple-120" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </footer>
 
        
     </div>

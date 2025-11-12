@@ -37,6 +37,7 @@ export default async function RootLayout({
           {children}
           {/* <ThemePanel /> */}
       </Theme>
+      
       </body>
     </html>
   );
