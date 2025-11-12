@@ -1,4 +1,5 @@
 import { Button } from "@radix-ui/themes";
+import Link from "next/link";
 
 type Payroll = {
   id: string;
@@ -66,21 +67,21 @@ export default async function Home() {
             Effortlessly manage your payroll with AI-powered automation, ensuring speed, accuracy, and intelligent insights for every pay run.
               Join thousands of people that trust us to handle their payroll with zero errors and maximum efficiency.
           </p>
-          <div className="mt-8">
-            <button className="p-5 bg-purple-800 text-white font-bold cursor-pointer rounded w-100">
-              Run New Payroll
-            </button>
-          </div>
+          <br />
+          <br />
+          <Link className="px-10 py-4 bg-purple-800 text-white font-bold cursor-pointer rounded" href='/payroll'>
+            Run New Payroll
+          </Link>
         </div>
       </div>
 
       {/* Recent Payrolls Section */}
-      <div className="mx-auto max-w-5xl py-12 sm:px-8">
+      <div className="mx-auto max-w-5xl py-12">
         <h2 className="text-2xl font-bold mb-2">Recent Payrolls</h2>
 
-        <div className="flex flex-row flex-wrap gap-5">
-          {samplePayrolls.map((payroll) => (
-            <div key={payroll.id} className="rounded-xl bg-white p-6 shadow-md ring-1 ring-purple-400 transition hover:shadow-lg w-110">
+        <div className="flex flex-row flex-wrap justify-between gap-5">
+          {[...samplePayrolls,...samplePayrolls,].map((payroll) => (
+            <div key={crypto.randomUUID()} className="rounded-xl bg-white p-6 shadow-md ring-1 ring-purple-400 transition hover:shadow-lg w-120">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-purple-11">{payroll.month} {payroll.year}</span>
                 <span className="rounded-full bg-purple-300 px-2 py-1 text-xs font-semibold text-purple-120 capitalize">
