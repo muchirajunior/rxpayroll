@@ -24,7 +24,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
- if(await supabase.auth.getUser()){
+ if(await supabase.auth.getUser() == null){
   var res = await supabase.auth.signInAnonymously()
   console.log(res);
  }
