@@ -14,6 +14,33 @@ export default function PayrollStepsView() {
     { label: "Confirm & Submit", key: "confirm" },
   ];
 
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const [data, setData] = useState( {
+    month: 'January',
+    year: (new Date().getFullYear()).toString(),
+    currency: 'KSH',
+    employees: '',
+    deductions: '',
+    leaves: '',
+    employeeFilename: null,
+    deductionFilename: null,
+    leaveFilename: null
+  } as {
+    month: string;
+    year: string;
+    currency: string;
+    employees: string;
+    deductions: string;
+    leaves: string;
+    employeeFilename: File | null;
+    deductionFilename: File | null;
+    leaveFilename: File | null;
+  })
+
   const handleNext = () => {
     if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
   };
@@ -34,15 +61,26 @@ export default function PayrollStepsView() {
             <h3 className="text-lg font-semibold text-purple-800">Payroll Headers</h3>
             <p className="text-gray-600">Configure payroll period, currency, and company details.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Payroll Period (e.g., Jan 2025)"
+              <select 
                 className="border border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              />
-              <select className="border border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
-                <option>USD</option>
-                <option>EUR</option>
-                <option>KSH</option>
+                onChange={(e) => setData({...data,month : e.target.value })}
+                defaultValue={data.month}
+                key={'MonthSelector'}
+              >
+                {
+                  months.map((month)=> <option key={month} value={month} selected = {month===data.month} >{month}</option> )
+                }
+
+              </select>
+              <select 
+                className="border border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                onChange={(e) => setData({...data,currency : e.target.value })}
+                defaultValue={data.currency}
+                key={'CurrencySelector'}
+              >
+                <option value='USD' >USD</option>
+                <option value='EUR' >EUR</option>
+                <option value='KSH' >KSH</option>
 
               </select>
             </div>
@@ -55,11 +93,22 @@ export default function PayrollStepsView() {
             <p className="text-gray-600">Upload employee data via CSV or Excel.</p>
             <label className="block">
               <span className="sr-only">Choose file</span>
+             
               <input
                 type="file"
-                accept=".csv,.xlsx"
+                accept=".csv,.xlsx,.txt"
+                key='Employees'
+                placeholder={data.employeeFilename?.name}
                 className="block w-full text-sm text-purple-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-100 file:text-purple-700 hover:file:bg-purple-200"
+                 onChange={ async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    var fileData = await file.text();
+                    setData({...data, employees: fileData ?? '', employeeFilename: file });
+                  }
+                }}
               />
+              <span className="text-purple-800 font-bold">{data.employeeFilename?.name}</span>
             </label>
           </div>
         );
@@ -72,9 +121,18 @@ export default function PayrollStepsView() {
               <span className="sr-only">Choose file</span>
               <input
                 type="file"
-                accept=".csv,.xlsx"
+                accept=".csv,.xlsx,.txt"
+                 key='Deductions'
                 className="block w-full text-sm text-purple-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-100 file:text-purple-700 hover:file:bg-purple-200"
+                onChange={ async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    var fileData = await file.text();
+                    setData({...data, deductions: fileData ?? '', deductionFilename: file});
+                  }
+                }}
               />
+               <span className="text-purple-800 font-bold">{data.deductionFilename?.name}</span>
             </label>
           </div>
         );
@@ -87,9 +145,18 @@ export default function PayrollStepsView() {
               <span className="sr-only">Choose file</span>
               <input
                 type="file"
-                accept=".csv,.xlsx"
+                accept=".csv,.xlsx,.txt"
+                key='Leaves'
                 className="block w-full text-sm text-purple-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-100 file:text-purple-700 hover:file:bg-purple-200"
+                 onChange={ async (e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    var fileData = await file.text();
+                    setData({...data, leaves: fileData ?? '', leaveFilename: file});
+                  }
+                }}
               />
+               <span className="text-purple-800 font-bold">{data.leaveFilename?.name}</span>
             </label>
           </div>
         );
@@ -99,10 +166,10 @@ export default function PayrollStepsView() {
             <h3 className="text-lg font-semibold text-purple-800">Confirm & Submit</h3>
             <p className="text-gray-600">Review all uploaded data before final submission.</p>
             <ul className="list-disc pl-5 text-gray-700">
-              <li>Payroll Headers: Configured</li>
-              <li>Employee Details: Uploaded</li>
-              <li>Deductions: Uploaded</li>
-              <li>Leaves: Uploaded</li>
+              <li>Payroll Headers: Month {data.month} Currency {data.currency}</li>
+              <li>Employee Details: {data.employeeFilename ? data.employeeFilename.name : 'Not uploaded'}</li>
+              <li>Deductions: {data.deductionFilename ? data.deductionFilename.name : 'Not uploaded'}</li>
+              <li>Leaves: {data.leaveFilename ? data.leaveFilename.name : 'Not uploaded'}</li>
             </ul>
             <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-lg">
               Submit Payroll
