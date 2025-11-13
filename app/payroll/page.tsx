@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { runPayroll } from "../utils/services";
+import { redirect } from "next/navigation";
 
 export default function PayrollStepsView() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -26,12 +28,16 @@ export default function PayrollStepsView() {
     employees: '',
     deductions: '',
     leaves: '',
+    company: '',
     employeeFilename: null,
     deductionFilename: null,
-    leaveFilename: null
+    leaveFilename: null,
+    isLoading: false,
+    error: null
   } as {
     month: string;
     year: string;
+    company: string;
     currency: string;
     employees: string;
     deductions: string;
@@ -39,6 +45,8 @@ export default function PayrollStepsView() {
     employeeFilename: File | null;
     deductionFilename: File | null;
     leaveFilename: File | null;
+    isLoading: boolean,
+    error: string | null,
   })
 
   const handleNext = () => {
@@ -50,8 +58,28 @@ export default function PayrollStepsView() {
   };
 
   const handleStepClick = (index: number) => {
+    if(data.isLoading)return;
     setCurrentStep(index);
   };
+
+  const handleSubmit = async ()=>{
+    setData((prev) => ({ ...prev, isLoading: true }));
+    var response = await runPayroll({
+      month: data.month,
+      year: data.year,
+      currency: data.currency,
+      company: data.company,
+      employees: data.employees,
+      deductions: data.deductions,
+      leaves: data.leaves,
+    });
+    setData((prev)=>({...prev, isLoading: false, error: response.error}));
+    console.log(response)
+    //TODO::handle respose
+    if(response.payrollId ){
+      redirect(`/payroll/${response.payrollId}`)
+    }
+  }
 
   const renderStepContent = () => {
     switch (steps[currentStep].key) {
@@ -61,6 +89,13 @@ export default function PayrollStepsView() {
             <h3 className="text-lg font-semibold text-purple-800">Payroll Headers</h3>
             <p className="text-gray-600">Configure payroll period, currency, and company details.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Company Name"
+                className="border border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                value={data.company}
+                onChange={(e) => setData({ ...data, company: e.target.value })}
+              />
               <select 
                 className="border border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 onChange={(e) => setData({...data,month : e.target.value })}
@@ -68,7 +103,7 @@ export default function PayrollStepsView() {
                 key={'MonthSelector'}
               >
                 {
-                  months.map((month)=> <option key={month} value={month} selected = {month===data.month} >{month}</option> )
+                  months.map((month)=> <option key={month} value={month}>{month}</option> )
                 }
 
               </select>
@@ -171,9 +206,15 @@ export default function PayrollStepsView() {
               <li>Deductions: {data.deductionFilename ? data.deductionFilename.name : 'Not uploaded'}</li>
               <li>Leaves: {data.leaveFilename ? data.leaveFilename.name : 'Not uploaded'}</li>
             </ul>
-            <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-lg">
-              Submit Payroll
-            </button>
+           { data.error && <div className="p-3 m-2 rounded bg-red-200 text-red-800">{data.error}</div>}
+            {
+              data.isLoading ?  <span className="flex border border-purple-200 border-b-purple-800 animate-spin p-4 border-5 w-10 rounded-full"/>:
+              data.employees.length == 0 ? <span className="p-3 bg-red-200 rounded text-red-800">Please Upload the required data to submit</span> :
+               <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-lg" onClick={handleSubmit}>
+                Submit Payroll
+              </button>
+            }
+           
           </div>
         );
       default:
@@ -218,30 +259,32 @@ export default function PayrollStepsView() {
         <div className="bg-purple-50 rounded-xl p-6 mb-6">{renderStepContent()}</div>
 
         {/* Navigation */}
-        <div className="flex justify-between">
-          <button
-            onClick={handleBack}
-            disabled={currentStep === 0}
-            className={`px-4 py-2 rounded-lg font-medium ${
-              currentStep === 0
-                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                : "bg-purple-100 text-purple-700 hover:bg-purple-200"
-            }`}
-          >
-            Back
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={currentStep === steps.length - 1}
-            className={`px-4 py-2 rounded-lg font-medium ${
-              currentStep === steps.length - 1
-                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                : "bg-purple-600 text-white hover:bg-purple-700"
-            }`}
-          >
-            Next
-          </button>
-        </div>
+        {    
+          !data.isLoading && <div className="flex justify-between">
+            <button
+              onClick={handleBack}
+              disabled={currentStep === 0}
+              className={`px-4 py-2 rounded-lg font-medium ${
+                currentStep === 0
+                  ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-purple-100 text-purple-700 hover:bg-purple-200"
+              }`}
+            >
+              Back
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={currentStep === steps.length - 1}
+              className={`px-4 py-2 rounded-lg font-medium ${
+                currentStep === steps.length - 1
+                  ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-purple-600 text-white hover:bg-purple-700"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        }
       </div>
     </div>
   );

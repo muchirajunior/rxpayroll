@@ -1,58 +1,11 @@
 import Link from "next/link";
-
-type Payroll = {
-  id: string;
-  month: string;
-  year: number;
-  payrollNumber: string;
-  employeeCount: number;
-  totalAmount: number;
-  status: 'draft' | 'paid' | 'processing';
-  paidAt?: Date;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { Payroll } from "./utils/types";
+import { supabase } from "./utils/utils";
 
 export default async function Home() {
 
-  const samplePayrolls: Payroll[] = [
-    {
-      id: '1',
-      month: 'March',
-      year: 2024,
-      payrollNumber: '2024-03',
-      employeeCount: 24,
-      totalAmount: 128450,
-      status: 'paid',
-      paidAt: new Date('2024-03-31'),
-      createdAt: new Date('2024-03-01'),
-      updatedAt: new Date('2024-03-31'),
-    },
-    {
-      id: '2',
-      month: 'February',
-      year: 2024,
-      payrollNumber: '2024-02',
-      employeeCount: 22,
-      totalAmount: 115200,
-      status: 'paid',
-      paidAt: new Date('2024-02-28'),
-      createdAt: new Date('2024-02-01'),
-      updatedAt: new Date('2024-02-28'),
-    },
-    {
-      id: '3',
-      month: 'January',
-      year: 2024,
-      payrollNumber: '2024-01',
-      employeeCount: 25,
-      totalAmount: 132100,
-      status: 'paid',
-      paidAt: new Date('2024-01-31'),
-      createdAt: new Date('2024-01-01'),
-      updatedAt: new Date('2024-01-31'),
-    },
-  ];
+  const { data: payrolls, error } = await supabase.from('payroll').select();
+
   
   return (
     <div className="min-h-screen h-full bg-gradient-to-br from-purple-100 to-purple-300">
@@ -79,7 +32,11 @@ export default async function Home() {
         <h2 className="text-2xl font-bold mb-2">Recent Payrolls</h2>
 
         <div className="flex flex-row flex-wrap justify-between gap-5">
-          {[...samplePayrolls,...samplePayrolls,].map((payroll) => (
+          {
+          
+          error ?  <div className="min-h-screen h-full bg-gradient-to-br from-purple-100 to-purple-300">Failed to load payrolls {error.message}</div> :
+          
+          payrolls.map((payroll) => (
             <div key={crypto.randomUUID()} className="rounded-xl bg-white p-6 shadow-md ring-1 ring-purple-400 transition hover:shadow-lg w-120">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-purple-11">{payroll.month} {payroll.year}</span>
@@ -87,9 +44,9 @@ export default async function Home() {
                   {payroll.status}
                 </span>
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-purple-120">Payroll #{payroll.payrollNumber}</h3>
+              <h3 className="mt-4 text-lg font-semibold text-purple-120">Payroll #{payroll.uuid}</h3>
               <p className="mt-2 text-sm ">
-                {payroll.employeeCount} employees • ${payroll.totalAmount.toLocaleString()} total
+                {payroll.employee_count} employees • ${payroll.total?.toLocaleString()} total
               </p>
               <div className="mt-5 flex justify-end gap-4 ">
                 <button className="rounded-md bg-purple-500 px-5 py-2 font-medium text-sm text-white hover:bg-purple-800">
