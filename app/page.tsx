@@ -31,12 +31,11 @@ export default async function Home() {
       <div className="mx-auto max-w-5xl py-12">
         <h2 className="text-2xl font-bold mb-2">Recent Payrolls</h2>
 
+       { error && <div className="p-3 border border-red-500 bg-red-200 text-red-800 "> {error.message} </div>}
+
         <div className="flex flex-row flex-wrap justify-between gap-5">
           {
-          
-          error ?  <div className="min-h-screen h-full bg-gradient-to-br from-purple-100 to-purple-300">Failed to load payrolls {error.message}</div> :
-          
-          payrolls.map((payroll) => (
+            !error &&  payrolls.map((payroll) => (
             <div key={crypto.randomUUID()} className="rounded-xl bg-white p-6 shadow-md ring-1 ring-purple-400 transition hover:shadow-lg w-120">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-purple-11">{payroll.month} {payroll.year}</span>
