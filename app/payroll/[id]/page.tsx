@@ -69,11 +69,11 @@ export default async function PayrollDetails({ params }: { params: Promise<{ id:
                                 <tr>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                                    {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th> */}
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Base Salary</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Net Salary</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bank</th>
+                                    {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bank</th> */}
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
 
@@ -84,11 +84,11 @@ export default async function PayrollDetails({ params }: { params: Promise<{ id:
                                     <tr key={line.emp_code} className="hover:bg-gray-50">
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{line.emp_code}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{line.emp_name}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{line.department}</td>
+                                        {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{line.department}</td> */}
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{line.position}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${Number(line.base_salary).toLocaleString()}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-purple-700">${Number(line.net_salary).toLocaleString()}</td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{line.bank_name}</td>
+                                        {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{line.bank_name}</td> */}
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{line.bank_account}</td>
                                         <td> <PayrollLineDetails  payrollLine={line} /></td>
                                     </tr>
