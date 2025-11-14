@@ -1,0 +1,41 @@
+deduction_id,emp_code,deduction_type,description,amount,frequency,start_date,end_date,is_active,tax_deductible
+DED001,EMP001,PAYE,Pay As You Earn Tax,1250.00,Monthly,2020-03-15,,Yes,No
+DED002,EMP001,Health Insurance,Company Health Plan,200.00,Monthly,2020-03-15,,Yes,Yes
+DED003,EMP001,Retirement,401k Contribution,600.00,Monthly,2020-03-15,,Yes,Yes
+DED004,EMP001,Social Security,SS Contribution,465.00,Monthly,2020-03-15,,Yes,No
+DED005,EMP002,PAYE,Pay As You Earn Tax,1133.33,Monthly,2019-07-22,,Yes,No
+DED006,EMP002,Health Insurance,Company Health Plan,200.00,Monthly,2019-07-22,,Yes,Yes
+DED007,EMP002,Retirement,401k Contribution,566.67,Monthly,2019-07-22,,Yes,Yes
+DED008,EMP002,Social Security,SS Contribution,421.33,Monthly,2019-07-22,,Yes,No
+DED009,EMP003,PAYE,Pay As You Earn Tax,1200.00,Bi-weekly,2021-01-10,,Yes,No
+DED010,EMP003,Health Insurance,Company Health Plan,92.31,Bi-weekly,2021-01-10,,Yes,Yes
+DED011,EMP003,Retirement,401k Contribution,553.85,Bi-weekly,2021-01-10,,Yes,Yes
+DED012,EMP003,Social Security,SS Contribution,443.08,Bi-weekly,2021-01-10,,Yes,No
+DED013,EMP004,PAYE,Pay As You Earn Tax,966.67,Monthly,2020-11-05,,Yes,No
+DED014,EMP004,Health Insurance,Company Health Plan,150.00,Monthly,2020-11-05,,Yes,Yes
+DED015,EMP004,Retirement,401k Contribution,483.33,Monthly,2020-11-05,,Yes,Yes
+DED016,EMP004,Social Security,SS Contribution,359.33,Monthly,2020-11-05,,Yes,No
+DED017,EMP005,PAYE,Pay As You Earn Tax,1083.33,Monthly,2018-05-30,,Yes,No
+DED018,EMP005,Health Insurance,Company Health Plan,180.00,Monthly,2018-05-30,,Yes,Yes
+DED019,EMP005,Life Insurance,Life Coverage,50.00,Monthly,2018-05-30,,Yes,Yes
+DED020,EMP005,Retirement,401k Contribution,541.67,Monthly,2018-05-30,,Yes,Yes
+DED021,EMP006,PAYE,Pay As You Earn Tax,1583.33,Monthly,2017-09-12,,Yes,No
+DED022,EMP006,Health Insurance,Company Health Plan,250.00,Monthly,2017-09-12,,Yes,Yes
+DED023,EMP006,Retirement,401k Contribution,791.67,Monthly,2017-09-12,,Yes,Yes
+DED024,EMP006,Social Security,SS Contribution,589.17,Monthly,2017-09-12,,Yes,No
+DED025,EMP007,PAYE,Pay As You Earn Tax,1033.33,Bi-weekly,2022-02-28,,Yes,No
+DED026,EMP007,Health Insurance,Company Health Plan,95.38,Bi-weekly,2022-02-28,,Yes,Yes
+DED027,EMP007,Retirement,401k Contribution,476.92,Bi-weekly,2022-02-28,,Yes,Yes
+DED028,EMP007,Social Security,SS Contribution,381.54,Bi-weekly,2022-02-28,,Yes,No
+DED029,EMP008,PAYE,Pay As You Earn Tax,1000.00,Monthly,2019-04-18,,Yes,No
+DED030,EMP008,Health Insurance,Company Health Plan,160.00,Monthly,2019-04-18,,Yes,Yes
+DED031,EMP008,Union Dues,Professional Union,45.00,Monthly,2019-04-18,,Yes,Yes
+DED032,EMP008,Retirement,401k Contribution,500.00,Monthly,2019-04-18,,Yes,Yes
+DED033,EMP009,PAYE,Pay As You Earn Tax,916.67,Monthly,2021-08-14,,Yes,No
+DED034,EMP009,Health Insurance,Company Health Plan,140.00,Monthly,2021-08-14,,Yes,Yes
+DED035,EMP009,Retirement,401k Contribution,458.33,Monthly,2021-08-14,,Yes,Yes
+DED036,EMP009,Social Security,SS Contribution,340.83,Monthly,2021-08-14,,Yes,No
+DED037,EMP010,PAYE,Pay As You Earn Tax,1366.67,Monthly,2016-12-03,,Yes,No
+DED038,EMP010,Health Insurance,Company Health Plan,220.00,Monthly,2016-12-03,,Yes,Yes
+DED039,EMP010,Retirement,401k Contribution,683.33,Monthly,2016-12-03,,Yes,Yes
+DED040,EMP010,Social Security,SS Contribution,508.33,Monthly,2016-12-03,,Yes,No

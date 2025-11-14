@@ -62,6 +62,15 @@ export default function PayrollStepsView() {
     setCurrentStep(index);
   };
 
+const handleDownloadSample = (fileName:string) => {
+  const link = document.createElement('a');
+  link.href = `/${fileName}`;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
   const handleSubmit = async ()=>{
     setData((prev) => ({ ...prev, isLoading: true }));
     var response = await runPayroll({
@@ -124,7 +133,13 @@ export default function PayrollStepsView() {
       case "employees":
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-purple-800">Employee Details Upload</h3>
+            <div className="flex justify-between">
+              <h3 className="text-lg font-semibold text-purple-800">Employee Details Upload</h3>
+              <button 
+                onClick={() => handleDownloadSample('employees_sample.csv')}
+                className="bg-purple-600 hover:bg-purple-800 text-white font-bold px-4 py-2 rounded"
+              >Download Sample</button>
+            </div>
             <p className="text-gray-600">Upload employee data via CSV or Excel.</p>
             <label className="block">
               <span className="sr-only">Choose file</span>
@@ -150,7 +165,13 @@ export default function PayrollStepsView() {
       case "deductions":
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-purple-800">Deductions Details Upload</h3>
+            <div className="flex justify-between">
+              <h3 className="text-lg font-semibold text-purple-800">Deductions Details Upload</h3>
+                <button 
+                  onClick={() => handleDownloadSample('deductions_sample.csv')}
+                  className="bg-purple-600 hover:bg-purple-800 text-white font-bold px-4 py-2 rounded"
+                >Download Sample</button>
+            </div>
             <p className="text-gray-600">Upload deductions such as taxes, loans, or advances.</p>
             <label className="block">
               <span className="sr-only">Choose file</span>
@@ -174,7 +195,13 @@ export default function PayrollStepsView() {
       case "leaves":
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-purple-800">Leaves Details Upload</h3>
+            <div className="flex justify-between">
+              <h3 className="text-lg font-semibold text-purple-800">Leaves Details Upload</h3>
+              <button 
+                  onClick={() => handleDownloadSample('leaves_sample.csv')}
+                  className="bg-purple-600 hover:bg-purple-800 text-white font-bold px-4 py-2 rounded"
+                >Download Sample</button>
+            </div>
             <p className="text-gray-600">Upload leave records for accurate salary calculation.</p>
             <label className="block">
               <span className="sr-only">Choose file</span>

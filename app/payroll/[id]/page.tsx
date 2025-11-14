@@ -2,6 +2,7 @@ import { Payroll } from "@/app/utils/types";
 import { supabase } from "@/app/utils/utils";
 import { notFound } from "next/navigation";
 import PayrollLineDetails from "./payroll_line_details";
+import Link from "next/link";
 
 export default async function PayrollDetails({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
@@ -10,7 +11,7 @@ export default async function PayrollDetails({ params }: { params: Promise<{ id:
         .select<string, Payroll>("*, payroll_lines(*)")
         .eq('uuid', id)
         .single();
-    console.log(payroll);
+    // console.log(payroll);
 
     if(error != null) return (
         <div className="min-h-screen bg-gradient-to-br from-purple-100 to-purple-300 py-6 h-full">
@@ -52,6 +53,9 @@ export default async function PayrollDetails({ params }: { params: Promise<{ id:
                         <div>
                             <p className="text-gray-500">Month</p>
                             <p className="font-semibold">{payroll.month}</p>
+                        </div>
+                        <div>
+                            <Link className="bg-purple-600 hover:bg-purple-800 rounded text-center font-bold text-white px-4 py-2 mt-2" href={'/'} >Back Home</Link>
                         </div>
                     </div>
                 </div>

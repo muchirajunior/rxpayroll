@@ -1,0 +1,11 @@
+emp_code,first_name,last_name,department,position,hire_date,base_salary,currency,email,phone,address,city,country,employment_type,bank_account,bank_name,tax_id,payment_frequency
+EMP001,John,Smith,Engineering,Software Engineer,2020-03-15,75000,USD,john.smith@company.com,+1-555-0101,"123 Main St",New York,USA,Full-time,ACC001234567,City Bank,TAX001234,Monthly
+EMP002,Sarah,Johnson,Marketing,Marketing Manager,2019-07-22,68000,USD,sarah.johnson@company.com,+1-555-0102,"456 Oak Ave",Chicago,USA,Full-time,ACC002345678,National Bank,TAX002345,Monthly
+EMP003,Michael,Chen,Finance,Financial Analyst,2021-01-10,72000,USD,michael.chen@company.com,+1-555-0103,"789 Pine Rd",Boston,USA,Full-time,ACC003456789,Global Trust,TAX003456,Bi-weekly
+EMP004,Emily,Davis,HR,HR Specialist,2020-11-05,58000,USD,emily.davis@company.com,+1-555-0104,"321 Elm St",Seattle,USA,Full-time,ACC004567890,Union Savings,TAX004567,Monthly
+EMP005,David,Wilson,Sales,Sales Executive,2018-05-30,65000,USD,david.wilson@company.com,+1-555-0105,"654 Maple Dr",Austin,USA,Full-time,ACC005678901,First National,TAX005678,Monthly
+EMP006,Lisa,Martinez,Engineering,Senior Developer,2017-09-12,95000,USD,lisa.martinez@company.com,+1-555-0106,"987 Cedar Ln",San Francisco,USA,Full-time,ACC006789012,Tech Bank,TAX006789,Monthly
+EMP007,Robert,Brown,IT,System Administrator,2022-02-28,62000,USD,robert.brown@company.com,+1-555-0107,"147 Birch Way",Denver,USA,Full-time,ACC007890123,Digital Bank,TAX007890,Bi-weekly
+EMP008,Jennifer,Lee,Finance,Accountant,2019-04-18,60000,USD,jennifer.lee@company.com,+1-555-0108,"258 Spruce Ct",Miami,USA,Full-time,ACC008901234,Financial Union,TAX008901,Monthly
+EMP009,James,Anderson,Marketing,Content Writer,2021-08-14,55000,USD,james.anderson@company.com,+1-555-0109,"369 Willow Ave",Portland,USA,Full-time,ACC009012345,Creative Bank,TAX009012,Monthly
+EMP010,Maria,Garcia,Operations,Operations Manager,2016-12-03,82000,USD,maria.garcia@company.com,+1-555-0110,"741 Aspen St",Atlanta,USA,Full-time,ACC010123456,Operations Federal,TAX010123,Monthly
