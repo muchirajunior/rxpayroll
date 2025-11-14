@@ -59,3 +59,8 @@ export type Deduction = {
   tax_deductible: string | null;
 };
 
+export type PayrollReport = {
+  payroll_count: number;
+  total_employees: number;
+  total_cost: number;
+};

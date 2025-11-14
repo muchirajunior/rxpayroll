@@ -1,15 +1,21 @@
 import Link from "next/link";
 import { Payroll } from "./utils/types";
 import { supabase } from "./utils/utils";
+import { getPayrollReport } from "./utils/services";
 
 export default async function Home() {
   const { data: payrolls, error } = await supabase.from('payroll').select< string, Payroll>();
+
+  const report = await getPayrollReport();
+
+  console.log(report);
+  
 
   
   return (
     <div className="min-h-screen h-full bg-gradient-to-br from-purple-100 to-purple-300">
       {/* Banner Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-purple-9 to-purple-10 px-6 py-16 sm:px-8">
+      <div className="relative overflow-hidden bg-gradient-to-r from-purple-9 to-purple-10 px-6 py-12 sm:px-8">
         <div className="mx-auto max-w-5xl text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-purple-500 sm:text-5xl lg:text-6xl">
             RX Payroll
@@ -18,6 +24,21 @@ export default async function Home() {
             Effortlessly manage your payroll with AI-powered automation, ensuring speed, accuracy, and intelligent insights for every pay run.
               Join thousands of people that trust us to handle their payroll with zero errors and maximum efficiency.
           </p>
+          {/* Report Summary Card */}
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            <div className="bg-white/70 backdrop-blur rounded-2xl p-5 shadow-lg ring-1 ring-purple-200">
+              <p className="text-sm text-purple-700 font-medium">Total Cost</p>
+              <p className="text-2xl font-bold text-purple-900">${report.total_cost.toLocaleString()}</p>
+            </div>
+            <div className="bg-white/70 backdrop-blur rounded-2xl p-5 shadow-lg ring-1 ring-purple-200">
+              <p className="text-sm text-purple-700 font-medium">Payroll Count</p>
+              <p className="text-2xl font-bold text-purple-900">{report.payroll_count}</p>
+            </div>
+            <div className="bg-white/70 backdrop-blur rounded-2xl p-5 shadow-lg ring-1 ring-purple-200">
+              <p className="text-sm text-purple-700 font-medium">Total Employees</p>
+              <p className="text-2xl font-bold text-purple-900">{report.total_employees}</p>
+            </div>
+          </div>
           <br />
           <br />
           <Link className="px-10 py-4 bg-purple-800 text-white font-bold cursor-pointer rounded" href='/payroll'>
@@ -27,7 +48,7 @@ export default async function Home() {
       </div>
 
       {/* Recent Payrolls Section */}
-      <div className="mx-auto max-w-5xl py-12">
+      <div className="mx-auto max-w-5xl py-5">
         <h2 className="text-2xl font-bold mb-2">Recent Payrolls</h2>
 
        { error && <div className="p-3 border border-red-500 bg-red-100 text-red-800 rounded"> {error.message} </div>}

@@ -1,7 +1,7 @@
 'use server';
 
 import { revalidatePath } from "next/cache";
-import { Payroll } from "./types";
+import { Payroll, PayrollReport } from "./types";
 import { openAIClient, supabase } from "./utils";
 
 const sample = {
@@ -130,4 +130,18 @@ export async function runPayroll(
         
         return {error: error.toString(), payrollId: null}
     }
+}
+
+export async function getPayrollReport(): Promise<PayrollReport> {
+  try {
+    const { data, error } = await supabase.rpc('get_payroll_report');
+    if (error) {
+      console.error('[getPayrollReport] Error fetching report:', error);
+      return { payroll_count: 0, total_employees: 0, total_cost: 0 };
+    }
+    return data as PayrollReport;
+  } catch (err) {
+    console.error('[getPayrollReport] Unexpected error:', err);
+    return { payroll_count: 0, total_employees: 0, total_cost: 0 };
+  }
 }

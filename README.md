@@ -129,6 +129,11 @@ If you include nested arrays (e.g., `deductions`, `leaves`) in your line items, 
 - `npm run start`: start production server
 - `npm run lint`: run ESLint
 
+### Generate report on supabase
+```md
+   i want a database function for report on number of number of payroll run, number of employees, and total costs that returns { payroll_count:2, total_employees:50, total_cost:8000} function name get_payroll_report
+```
+
 ## Notes
 
 - Anonymous auth is used on first load to keep onboarding friction low (`app/layout.tsx:26`).
