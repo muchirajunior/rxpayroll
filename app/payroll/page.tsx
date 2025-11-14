@@ -226,7 +226,9 @@ const handleDownloadSample = (fileName:string) => {
         return (
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-purple-800">Confirm & Submit</h3>
-            <p className="text-gray-600">Review all uploaded data before final submission.</p>
+            <p className="text-gray-600">Review all uploaded data before final submission. 
+              <span className="text-amber-600 font-semibold ms-3">⚠️ This might take a few minutes</span>
+            </p>
             <ul className="list-disc pl-5 text-gray-700">
               <li>Payroll Headers: Month {data.month} Currency {data.currency}</li>
               <li>Employee Details: {data.employeeFilename ? data.employeeFilename.name : 'Not uploaded'}</li>

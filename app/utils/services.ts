@@ -86,7 +86,7 @@ export async function runPayroll(
                     ${data.deductions}\nLeaves data: ${data.leaves}\n\ Return this sample structure and do not make up any data:\n${JSON.stringify(sample, null, 2)}, The uuid for this payroll is ${payrollUUID}`
                 }
             ],
-            model: "gpt-4o-mini",
+            model: "gpt-5-nano-2025-08-07",
             response_format: { type: "json_object" }
         })
         console.log('Completed the OpenAi chat call ........ ');

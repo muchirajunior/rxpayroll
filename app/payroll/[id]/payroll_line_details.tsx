@@ -15,7 +15,7 @@ export default function PayrollLineDetails({payrollLine} : {payrollLine : Payrol
                 View Details
             </button>
             {showModal && (
-                <div className="fixed inset-10 z-50 flex items-center justify-center min-h-screen min-w-screen backdrop-blur-xs">
+                <div className="fixed inset-10 z-50 flex items-center justify-center min-h-screen min-w-screen backdrop-blur-sm">
                     <div className="bg-white rounded-lg shadow-lg w-300 max-w-4xl p-6  opacity-100" id="PayrollDetailsModal">
                         
                         {/* Header */}
