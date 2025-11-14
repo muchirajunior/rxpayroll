@@ -136,12 +136,12 @@ export async function getPayrollReport(): Promise<PayrollReport> {
   try {
     const { data, error } = await supabase.rpc('get_payroll_report');
     if (error) {
-      console.error('[getPayrollReport] Error fetching report:', error);
+      // console.error('[getPayrollReport] Error fetching report:', error);
       return { payroll_count: 0, total_employees: 0, total_cost: 0 };
     }
     return data as PayrollReport;
   } catch (err) {
-    console.error('[getPayrollReport] Unexpected error:', err);
+    // console.error('[getPayrollReport] Unexpected error:', err);
     return { payroll_count: 0, total_employees: 0, total_cost: 0 };
   }
 }
