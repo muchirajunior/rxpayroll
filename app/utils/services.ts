@@ -134,7 +134,8 @@ export async function runPayroll(
 
 export async function getPayrollReport(): Promise<PayrollReport> {
   try {
-    const { data, error } = await supabase.rpc('get_payroll_report');
+    const revalidate = 60;
+    const { data, error } = await supabase.rpc('get_payroll_report',{name:'john'});
     if (error) {
       // console.error('[getPayrollReport] Error fetching report:', error);
       return { payroll_count: 0, total_employees: 0, total_cost: 0 };
